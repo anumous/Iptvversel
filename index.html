@@ -183,7 +183,7 @@ tg.setHeaderColor('#0a0a0f');
 tg.setBackgroundColor('#0a0a0f');
 
 function buy(tariffId, stars) {
-  tg.sendData(JSON.stringify({ action: 'buy', tariff: tariffId, stars: stars }));
+  tg.sendData(JSON.stringify({ action: "buy", tariff: tariffId, stars: stars })); tg.close();
 }
 </script>
 </body>
