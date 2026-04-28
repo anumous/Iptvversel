@@ -112,6 +112,13 @@ tg.setHeaderColor('#0a0a0f');
 tg.setBackgroundColor('#0a0a0f');
 
 function buy(tariffId, stars) {
+  const userId = tg.initDataUnsafe?.user?.id;
+  fetch('https://bent-commissions-trainer-informed.trycloudflare.com/create-order', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({user_id: userId, tariff: tariffId})
+  }).then(()=>tg.close());
+  return;
   tg.sendData(JSON.stringify({ action: 'buy', tariff: tariffId, stars: stars }));
   tg.close();
 }
