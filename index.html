@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ultra Net VPN</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #0a0a0f;
+  color: #fff;
+  font-family: -apple-system, sans-serif;
+  min-height: 100vh;
+  padding: 20px;
+}
+.header { text-align: center; padding: 30px 0 20px; }
+.logo { font-size: 48px; margin-bottom: 10px; }
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #7b61ff, #00d4ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.subtitle { font-size: 14px; color: #666; margin-top: 5px; }
+.tariffs { margin-top: 30px; display: flex; flex-direction: column; gap: 15px; }
+.tariff {
+  background: #13131f;
+  border: 1px solid #1e1e3a;
+  border-radius: 16px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+}
+.tariff.popular { border-color: #7b61ff; }
+.popular-badge {
+  position: absolute;
+  top: -10px;
+  right: 15px;
+  background: linear-gradient(135deg, #7b61ff, #00d4ff);
+  color: white;
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+.save-badge {
+  position: absolute;
+  top: -10px;
+  left: 15px;
+  background: #1a472a;
+  color: #4ade80;
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+.tariff:active { transform: scale(0.98); }
+.tariff-name { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+.tariff-features { display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
+.feature { font-size: 12px; color: #888; }
+.tariff-price {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.stars { font-size: 22px; font-weight: 700; color: #ffd700; }
+.per-month { font-size: 11px; color: #666; margin-top: 2px; }
+.buy-btn {
+  background: linear-gradient(135deg, #7b61ff, #00d4ff);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.features-list {
+  margin-top: 30px;
+  background: #13131f;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+.features-list h3 { font-size: 14px; margin-bottom: 15px; color: #666; letter-spacing: 1px; }
+.feat-item { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; font-size: 14px; }
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="logo">🌐</div>
+  <div class="title">Ultra Net VPN</div>
+  <div class="subtitle">Быстрый и безопасный VPN</div>
+</div>
+
+<div class="tariffs">
+  <div class="tariff" onclick="buy(1, 200)">
+    <div class="tariff-name">⚡ 1 Месяц</div>
+    <div class="tariff-features">
+      <span class="feature">📦 Безлимит</span>
+      <span class="feature">🔒 VLESS Reality</span>
+      <span class="feature">📱 1 устройство</span>
+    </div>
+    <div class="tariff-price">
+      <div>
+        <div class="stars">⭐ 200</div>
+        <div class="per-month">≈ 210₽</div>
+      </div>
+      <button class="buy-btn">Купить</button>
+    </div>
+  </div>
+
+  <div class="tariff popular" onclick="buy(2, 500)">
+    <div class="popular-badge">🔥 Популярное</div>
+    <div class="save-badge">Экономия 7%</div>
+    <div class="tariff-name">💎 3 Месяца</div>
+    <div class="tariff-features">
+      <span class="feature">📦 Безлимит</span>
+      <span class="feature">🔒 VLESS Reality</span>
+      <span class="feature">📱 1 устройство</span>
+    </div>
+    <div class="tariff-price">
+      <div>
+        <div class="stars">⭐ 500</div>
+        <div class="per-month">≈ 525₽ / 175₽ в мес</div>
+      </div>
+      <button class="buy-btn">Купить</button>
+    </div>
+  </div>
+
+  <div class="tariff" onclick="buy(3, 900)">
+    <div class="save-badge">Экономия 11%</div>
+    <div class="tariff-name">👑 6 Месяцев</div>
+    <div class="tariff-features">
+      <span class="feature">📦 Безлимит</span>
+      <span class="feature">🔒 VLESS Reality</span>
+      <span class="feature">📱 1 устройство</span>
+    </div>
+    <div class="tariff-price">
+      <div>
+        <div class="stars">⭐ 900</div>
+        <div class="per-month">≈ 945₽ / 157₽ в мес</div>
+      </div>
+      <button class="buy-btn">Купить</button>
+    </div>
+  </div>
+
+  <div class="tariff" onclick="buy(4, 2000)">
+    <div class="save-badge">Экономия 17%</div>
+    <div class="tariff-name">🚀 12 Месяцев</div>
+    <div class="tariff-features">
+      <span class="feature">📦 Безлимит</span>
+      <span class="feature">🔒 VLESS Reality</span>
+      <span class="feature">📱 1 устройство</span>
+    </div>
+    <div class="tariff-price">
+      <div>
+        <div class="stars">⭐ 2000</div>
+        <div class="per-month">≈ 2100₽ / 175₽ в мес</div>
+      </div>
+      <button class="buy-btn">Купить</button>
+    </div>
+  </div>
+</div>
+
+<div class="features-list">
+  <h3>ВКЛЮЧЕНО</h3>
+  <div class="feat-item"><span>🚀</span> Высокая скорость</div>
+  <div class="feat-item"><span>🔒</span> VLESS + Reality протокол</div>
+  <div class="feat-item"><span>🌍</span> Сервер в Амстердаме</div>
+  <div class="feat-item"><span>📱</span> iOS, Android, Windows, Mac</div>
+  <div class="feat-item"><span>⚡</span> Без ограничений скорости</div>
+  <div class="feat-item"><span>🛡</span> Защита от блокировок</div>
+</div>
+
+<script>
+const tg = window.Telegram.WebApp;
+tg.expand();
+tg.setHeaderColor('#0a0a0f');
+tg.setBackgroundColor('#0a0a0f');
+
+function buy(tariffId, stars) {
+  tg.sendData(JSON.stringify({ action: 'buy', tariff: tariffId, stars: stars }));
+}
+</script>
+</body>
+</html>
